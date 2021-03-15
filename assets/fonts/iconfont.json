@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "925060",
+      "name": "eye",
+      "font_class": "eye",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "11992449",
+      "name": "comments",
+      "font_class": "comments",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
+    {
+      "icon_id": "18057492",
+      "name": "Like",
+      "font_class": "Like",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    }
+  ]
+}

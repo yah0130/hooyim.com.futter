@@ -5,6 +5,8 @@ import 'package:hooyim/net/result_data.dart';
 import 'app_net_service.dart';
 
 class AppApi extends AppNetService {
+  /// 博主信息
+  static const String _ADMIN = "/auth/admin";
   /// 文章
   static const String _ARTICLE = "/article";
 
@@ -46,7 +48,14 @@ class AppApi extends AppNetService {
 
   Future<ResultData> likePage(id, bool showProgress) async {
     ResultData resultData =
-        await get('$_LIKE', params: {'article_id': id}, showLoad: showProgress);
+        await patch('$_LIKE', params: {'article_id': id}, showLoad: showProgress);
+    return resultData;
+  }
+
+  Future<ResultData> getUserInfo(
+      Map<String, dynamic> param, bool showProgress) async {
+    ResultData resultData =
+    await get(_ADMIN, params: param, showLoad: showProgress);
     return resultData;
   }
 }

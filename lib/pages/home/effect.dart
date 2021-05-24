@@ -2,6 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:hooyim/api/app_api.dart';
 import 'package:hooyim/api/bean/article_entity.dart';
 import 'package:hooyim/net/result_data.dart';
+import 'package:hooyim/pages/article/action.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -11,16 +12,16 @@ Effect<HomeState> buildEffect() {
     HomeAction.refresh: _onArticleRefresh,
     HomeAction.getArticles: _onGetArticle,
     HomeAction.loadMore: _onLoadMore,
-    Lifecycle.initState: _init
+    ArticleAction.updateHomeLike: _onUpdateArticleLike
   });
-}
-
-void _init(Action action, Context<HomeState> ctx) {
-  ctx.dispatch(HomeActionCreator.onGetArticles({'page': 1}));
 }
 
 void _onArticleRefresh(Action action, Context<HomeState> ctx) {
   ctx.dispatch(HomeActionCreator.onGetArticles({'page': 1}));
+}
+
+void _onUpdateArticleLike(Action action, Context<HomeState> ctx) {
+  ctx.dispatch(HomeActionCreator.onUpdateArticleLike(action.payload));
 }
 
 void _onLoadMore(Action action, Context<HomeState> ctx) {

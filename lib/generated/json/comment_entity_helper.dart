@@ -8,7 +8,7 @@ commentEntityFromJson(CommentEntity data, Map<String, dynamic> json) {
 		data.message = json['message'].toString();
 	}
 	if (json['result'] != null) {
-		data.result = new CommentResult().fromJson(json['result']);
+		data.result = CommentResult().fromJson(json['result']);
 	}
 	return data;
 }
@@ -17,39 +17,28 @@ Map<String, dynamic> commentEntityToJson(CommentEntity entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['status'] = entity.status;
 	data['message'] = entity.message;
-	if (entity.result != null) {
-		data['result'] = entity.result.toJson();
-	}
+	data['result'] = entity.result?.toJson();
 	return data;
 }
 
 commentResultFromJson(CommentResult data, Map<String, dynamic> json) {
 	if (json['data'] != null) {
-		data.data = new List<CommentResultData>();
-		(json['data'] as List).forEach((v) {
-			data.data.add(new CommentResultData().fromJson(v));
-		});
+		data.data = (json['data'] as List).map((v) => CommentResultData().fromJson(v)).toList();
 	}
 	if (json['params'] != null) {
-		data.params = new CommentResultParams().fromJson(json['params']);
+		data.params = CommentResultParams().fromJson(json['params']);
 	}
 	if (json['pagination'] != null) {
-		data.pagination = new CommentResultPagination().fromJson(json['pagination']);
+		data.pagination = CommentResultPagination().fromJson(json['pagination']);
 	}
 	return data;
 }
 
 Map<String, dynamic> commentResultToJson(CommentResult entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
-	if (entity.data != null) {
-		data['data'] =  entity.data.map((v) => v.toJson()).toList();
-	}
-	if (entity.params != null) {
-		data['params'] = entity.params.toJson();
-	}
-	if (entity.pagination != null) {
-		data['pagination'] = entity.pagination.toJson();
-	}
+	data['data'] =  entity.data?.map((v) => v.toJson())?.toList();
+	data['params'] = entity.params?.toJson();
+	data['pagination'] = entity.pagination?.toJson();
 	return data;
 }
 
@@ -92,20 +81,19 @@ commentResultDataFromJson(CommentResultData data, Map<String, dynamic> json) {
 		data.agent = json['agent'].toString();
 	}
 	if (json['ip_location'] != null) {
-		data.ipLocation = new CommentResultDataIpLocation().fromJson(json['ip_location']);
+		data.ipLocation = CommentResultDataIpLocation().fromJson(json['ip_location']);
 	}
 	if (json['ip'] != null) {
 		data.ip = json['ip'].toString();
 	}
 	if (json['extends'] != null) {
-		data.xExtends = new List<dynamic>();
-		data.xExtends.addAll(json['extends']);
+		data.xExtends = (json['extends'] as List).map((v) => v).toList().cast<dynamic>();
 	}
 	if (json['create_at'] != null) {
 		data.createAt = json['create_at'].toString();
 	}
 	if (json['author'] != null) {
-		data.author = new CommentResultDataAuthor().fromJson(json['author']);
+		data.author = CommentResultDataAuthor().fromJson(json['author']);
 	}
 	if (json['__v'] != null) {
 		data.iV = json['__v'] is String
@@ -129,17 +117,11 @@ Map<String, dynamic> commentResultDataToJson(CommentResultData entity) {
 	data['post_id'] = entity.postId;
 	data['content'] = entity.content;
 	data['agent'] = entity.agent;
-	if (entity.ipLocation != null) {
-		data['ip_location'] = entity.ipLocation.toJson();
-	}
+	data['ip_location'] = entity.ipLocation?.toJson();
 	data['ip'] = entity.ip;
-	if (entity.xExtends != null) {
-		data['extends'] =  [];
-	}
+	data['extends'] = entity.xExtends;
 	data['create_at'] = entity.createAt;
-	if (entity.author != null) {
-		data['author'] = entity.author.toJson();
-	}
+	data['author'] = entity.author?.toJson();
 	data['__v'] = entity.iV;
 	data['update_at'] = entity.updateAt;
 	return data;
@@ -150,9 +132,9 @@ commentResultDataIpLocationFromJson(CommentResultDataIpLocation data, Map<String
 		data.country = json['country'].toString();
 	}
 	if (json['range'] != null) {
-		data.range = json['range']?.map((v) => v is String
+		data.range = (json['range'] as List).map((v) => v is String
 				? int.tryParse(v)
-				: v.toInt())?.toList()?.cast<int>();
+				: v.toInt()).toList().cast<int>();
 	}
 	if (json['city'] != null) {
 		data.city = json['city'].toString();
@@ -187,13 +169,13 @@ Map<String, dynamic> commentResultDataAuthorToJson(CommentResultDataAuthor entit
 
 commentResultParamsFromJson(CommentResultParams data, Map<String, dynamic> json) {
 	if (json['querys'] != null) {
-		data.querys = new CommentResultParamsQuerys().fromJson(json['querys']);
+		data.querys = CommentResultParamsQuerys().fromJson(json['querys']);
 	}
 	if (json['options'] != null) {
-		data.options = new CommentResultParamsOptions().fromJson(json['options']);
+		data.options = CommentResultParamsOptions().fromJson(json['options']);
 	}
 	if (json['params'] != null) {
-		data.params = new CommentResultParamsParams().fromJson(json['params']);
+		data.params = CommentResultParamsParams().fromJson(json['params']);
 	}
 	if (json['isAuthenticated'] != null) {
 		data.isAuthenticated = json['isAuthenticated'];
@@ -203,15 +185,9 @@ commentResultParamsFromJson(CommentResultParams data, Map<String, dynamic> json)
 
 Map<String, dynamic> commentResultParamsToJson(CommentResultParams entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
-	if (entity.querys != null) {
-		data['querys'] = entity.querys.toJson();
-	}
-	if (entity.options != null) {
-		data['options'] = entity.options.toJson();
-	}
-	if (entity.params != null) {
-		data['params'] = entity.params.toJson();
-	}
+	data['querys'] = entity.querys?.toJson();
+	data['options'] = entity.options?.toJson();
+	data['params'] = entity.params?.toJson();
 	data['isAuthenticated'] = entity.isAuthenticated;
 	return data;
 }
@@ -237,7 +213,7 @@ Map<String, dynamic> commentResultParamsQuerysToJson(CommentResultParamsQuerys e
 
 commentResultParamsOptionsFromJson(CommentResultParamsOptions data, Map<String, dynamic> json) {
 	if (json['sort'] != null) {
-		data.sort = new CommentResultParamsOptionsSort().fromJson(json['sort']);
+		data.sort = CommentResultParamsOptionsSort().fromJson(json['sort']);
 	}
 	if (json['page'] != null) {
 		data.page = json['page'] is String
@@ -254,9 +230,7 @@ commentResultParamsOptionsFromJson(CommentResultParamsOptions data, Map<String, 
 
 Map<String, dynamic> commentResultParamsOptionsToJson(CommentResultParamsOptions entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
-	if (entity.sort != null) {
-		data['sort'] = entity.sort.toJson();
-	}
+	data['sort'] = entity.sort?.toJson();
 	data['page'] = entity.page;
 	data['limit'] = entity.limit;
 	return data;

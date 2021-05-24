@@ -8,7 +8,7 @@ articleDetailEntityFromJson(ArticleDetailEntity data, Map<String, dynamic> json)
 		data.message = json['message'].toString();
 	}
 	if (json['result'] != null) {
-		data.result = new ArticleDetailResult().fromJson(json['result']);
+		data.result = ArticleDetailResult().fromJson(json['result']);
 	}
 	return data;
 }
@@ -17,15 +17,13 @@ Map<String, dynamic> articleDetailEntityToJson(ArticleDetailEntity entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['status'] = entity.status;
 	data['message'] = entity.message;
-	if (entity.result != null) {
-		data['result'] = entity.result.toJson();
-	}
+	data['result'] = entity.result?.toJson();
 	return data;
 }
 
 articleDetailResultFromJson(ArticleDetailResult data, Map<String, dynamic> json) {
 	if (json['keywords'] != null) {
-		data.keywords = json['keywords']?.map((v) => v.toString())?.toList()?.cast<String>();
+		data.keywords = (json['keywords'] as List).map((v) => v.toString()).toList().cast<String>();
 	}
 	if (json['state'] != null) {
 		data.state = json['state'] is String
@@ -43,16 +41,10 @@ articleDetailResultFromJson(ArticleDetailResult data, Map<String, dynamic> json)
 				: json['origin'].toInt();
 	}
 	if (json['tag'] != null) {
-		data.tag = new List<ArticleDetailResultTag>();
-		(json['tag'] as List).forEach((v) {
-			data.tag.add(new ArticleDetailResultTag().fromJson(v));
-		});
+		data.tag = (json['tag'] as List).map((v) => ArticleDetailResultTag().fromJson(v)).toList();
 	}
 	if (json['category'] != null) {
-		data.category = new List<ArticleDetailResultCategory>();
-		(json['category'] as List).forEach((v) {
-			data.category.add(new ArticleDetailResultCategory().fromJson(v));
-		});
+		data.category = (json['category'] as List).map((v) => ArticleDetailResultCategory().fromJson(v)).toList();
 	}
 	if (json['_id'] != null) {
 		data.sId = json['_id'].toString();
@@ -70,11 +62,10 @@ articleDetailResultFromJson(ArticleDetailResult data, Map<String, dynamic> json)
 		data.thumb = json['thumb'].toString();
 	}
 	if (json['extends'] != null) {
-		data.xExtends = new List<dynamic>();
-		data.xExtends.addAll(json['extends']);
+		data.xExtends = (json['extends'] as List).map((v) => v).toList().cast<dynamic>();
 	}
 	if (json['meta'] != null) {
-		data.meta = new ArticleDetailResultMeta().fromJson(json['meta']);
+		data.meta = ArticleDetailResultMeta().fromJson(json['meta']);
 	}
 	if (json['create_at'] != null) {
 		data.createAt = json['create_at'].toString();
@@ -96,10 +87,7 @@ articleDetailResultFromJson(ArticleDetailResult data, Map<String, dynamic> json)
 		data.tContent = json['t_content'].toString();
 	}
 	if (json['related'] != null) {
-		data.related = new List<ArticleDetailResultRelated>();
-		(json['related'] as List).forEach((v) {
-			data.related.add(new ArticleDetailResultRelated().fromJson(v));
-		});
+		data.related = (json['related'] as List).map((v) => ArticleDetailResultRelated().fromJson(v)).toList();
 	}
 	return data;
 }
@@ -110,31 +98,21 @@ Map<String, dynamic> articleDetailResultToJson(ArticleDetailResult entity) {
 	data['state'] = entity.state;
 	data['public'] = entity.public;
 	data['origin'] = entity.origin;
-	if (entity.tag != null) {
-		data['tag'] =  entity.tag.map((v) => v.toJson()).toList();
-	}
-	if (entity.category != null) {
-		data['category'] =  entity.category.map((v) => v.toJson()).toList();
-	}
+	data['tag'] =  entity.tag?.map((v) => v.toJson())?.toList();
+	data['category'] =  entity.category?.map((v) => v.toJson())?.toList();
 	data['_id'] = entity.sId;
 	data['title'] = entity.title;
 	data['description'] = entity.description;
 	data['content'] = entity.content;
 	data['thumb'] = entity.thumb;
-	if (entity.xExtends != null) {
-		data['extends'] =  [];
-	}
-	if (entity.meta != null) {
-		data['meta'] = entity.meta.toJson();
-	}
+	data['extends'] = entity.xExtends;
+	data['meta'] = entity.meta?.toJson();
 	data['create_at'] = entity.createAt;
 	data['update_at'] = entity.updateAt;
 	data['id'] = entity.id;
 	data['__v'] = entity.iV;
 	data['t_content'] = entity.tContent;
-	if (entity.related != null) {
-		data['related'] =  entity.related.map((v) => v.toJson()).toList();
-	}
+	data['related'] =  entity.related?.map((v) => v.toJson())?.toList();
 	return data;
 }
 
@@ -152,10 +130,7 @@ articleDetailResultTagFromJson(ArticleDetailResultTag data, Map<String, dynamic>
 		data.description = json['description'].toString();
 	}
 	if (json['extends'] != null) {
-		data.xExtends = new List<ArticleDetailResultTagExtend>();
-		(json['extends'] as List).forEach((v) {
-			data.xExtends.add(new ArticleDetailResultTagExtend().fromJson(v));
-		});
+		data.xExtends = (json['extends'] as List).map((v) => ArticleDetailResultTagExtend().fromJson(v)).toList();
 	}
 	if (json['create_at'] != null) {
 		data.createAt = json['create_at'].toString();
@@ -182,9 +157,7 @@ Map<String, dynamic> articleDetailResultTagToJson(ArticleDetailResultTag entity)
 	data['name'] = entity.name;
 	data['slug'] = entity.slug;
 	data['description'] = entity.description;
-	if (entity.xExtends != null) {
-		data['extends'] =  entity.xExtends.map((v) => v.toJson()).toList();
-	}
+	data['extends'] =  entity.xExtends?.map((v) => v.toJson())?.toList();
 	data['create_at'] = entity.createAt;
 	data['update_at'] = entity.updateAt;
 	data['id'] = entity.id;
@@ -230,10 +203,7 @@ articleDetailResultCategoryFromJson(ArticleDetailResultCategory data, Map<String
 		data.description = json['description'].toString();
 	}
 	if (json['extends'] != null) {
-		data.xExtends = new List<ArticleDetailResultCategoryExtend>();
-		(json['extends'] as List).forEach((v) {
-			data.xExtends.add(new ArticleDetailResultCategoryExtend().fromJson(v));
-		});
+		data.xExtends = (json['extends'] as List).map((v) => ArticleDetailResultCategoryExtend().fromJson(v)).toList();
 	}
 	if (json['create_at'] != null) {
 		data.createAt = json['create_at'].toString();
@@ -261,9 +231,7 @@ Map<String, dynamic> articleDetailResultCategoryToJson(ArticleDetailResultCatego
 	data['name'] = entity.name;
 	data['slug'] = entity.slug;
 	data['description'] = entity.description;
-	if (entity.xExtends != null) {
-		data['extends'] =  entity.xExtends.map((v) => v.toJson()).toList();
-	}
+	data['extends'] =  entity.xExtends?.map((v) => v.toJson())?.toList();
 	data['create_at'] = entity.createAt;
 	data['update_at'] = entity.updateAt;
 	data['id'] = entity.id;
@@ -334,7 +302,7 @@ articleDetailResultRelatedFromJson(ArticleDetailResultRelated data, Map<String, 
 		data.thumb = json['thumb'].toString();
 	}
 	if (json['meta'] != null) {
-		data.meta = new ArticleDetailResultRelatedMeta().fromJson(json['meta']);
+		data.meta = ArticleDetailResultRelatedMeta().fromJson(json['meta']);
 	}
 	if (json['create_at'] != null) {
 		data.createAt = json['create_at'].toString();
@@ -355,9 +323,7 @@ Map<String, dynamic> articleDetailResultRelatedToJson(ArticleDetailResultRelated
 	data['title'] = entity.title;
 	data['description'] = entity.description;
 	data['thumb'] = entity.thumb;
-	if (entity.meta != null) {
-		data['meta'] = entity.meta.toJson();
-	}
+	data['meta'] = entity.meta?.toJson();
 	data['create_at'] = entity.createAt;
 	data['update_at'] = entity.updateAt;
 	data['id'] = entity.id;

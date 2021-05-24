@@ -8,7 +8,7 @@ articleEntityFromJson(ArticleEntity data, Map<String, dynamic> json) {
 		data.message = json['message'].toString();
 	}
 	if (json['result'] != null) {
-		data.result = new ArticleResult().fromJson(json['result']);
+		data.result = ArticleResult().fromJson(json['result']);
 	}
 	return data;
 }
@@ -17,45 +17,34 @@ Map<String, dynamic> articleEntityToJson(ArticleEntity entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['status'] = entity.status;
 	data['message'] = entity.message;
-	if (entity.result != null) {
-		data['result'] = entity.result.toJson();
-	}
+	data['result'] = entity.result?.toJson();
 	return data;
 }
 
 articleResultFromJson(ArticleResult data, Map<String, dynamic> json) {
 	if (json['data'] != null) {
-		data.data = new List<ArticleResultData>();
-		(json['data'] as List).forEach((v) {
-			data.data.add(new ArticleResultData().fromJson(v));
-		});
+		data.data = (json['data'] as List).map((v) => ArticleResultData().fromJson(v)).toList();
 	}
 	if (json['params'] != null) {
-		data.params = new ArticleResultParams().fromJson(json['params']);
+		data.params = ArticleResultParams().fromJson(json['params']);
 	}
 	if (json['pagination'] != null) {
-		data.pagination = new ArticleResultPagination().fromJson(json['pagination']);
+		data.pagination = ArticleResultPagination().fromJson(json['pagination']);
 	}
 	return data;
 }
 
 Map<String, dynamic> articleResultToJson(ArticleResult entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
-	if (entity.data != null) {
-		data['data'] =  entity.data.map((v) => v.toJson()).toList();
-	}
-	if (entity.params != null) {
-		data['params'] = entity.params.toJson();
-	}
-	if (entity.pagination != null) {
-		data['pagination'] = entity.pagination.toJson();
-	}
+	data['data'] =  entity.data?.map((v) => v.toJson())?.toList();
+	data['params'] = entity.params?.toJson();
+	data['pagination'] = entity.pagination?.toJson();
 	return data;
 }
 
 articleResultDataFromJson(ArticleResultData data, Map<String, dynamic> json) {
 	if (json['keywords'] != null) {
-		data.keywords = json['keywords']?.map((v) => v.toString())?.toList()?.cast<String>();
+		data.keywords = (json['keywords'] as List).map((v) => v.toString()).toList().cast<String>();
 	}
 	if (json['state'] != null) {
 		data.state = json['state'] is String
@@ -73,16 +62,10 @@ articleResultDataFromJson(ArticleResultData data, Map<String, dynamic> json) {
 				: json['origin'].toInt();
 	}
 	if (json['tag'] != null) {
-		data.tag = new List<ArticleResultDataTag>();
-		(json['tag'] as List).forEach((v) {
-			data.tag.add(new ArticleResultDataTag().fromJson(v));
-		});
+		data.tag = (json['tag'] as List).map((v) => ArticleResultDataTag().fromJson(v)).toList();
 	}
 	if (json['category'] != null) {
-		data.category = new List<ArticleResultDataCategory>();
-		(json['category'] as List).forEach((v) {
-			data.category.add(new ArticleResultDataCategory().fromJson(v));
-		});
+		data.category = (json['category'] as List).map((v) => ArticleResultDataCategory().fromJson(v)).toList();
 	}
 	if (json['_id'] != null) {
 		data.sId = json['_id'].toString();
@@ -97,11 +80,10 @@ articleResultDataFromJson(ArticleResultData data, Map<String, dynamic> json) {
 		data.thumb = json['thumb'].toString();
 	}
 	if (json['extends'] != null) {
-		data.xExtends = new List<dynamic>();
-		data.xExtends.addAll(json['extends']);
+		data.xExtends = (json['extends'] as List).map((v) => v).toList().cast<dynamic>();
 	}
 	if (json['meta'] != null) {
-		data.meta = new ArticleResultDataMeta().fromJson(json['meta']);
+		data.meta = ArticleResultDataMeta().fromJson(json['meta']);
 	}
 	if (json['create_at'] != null) {
 		data.createAt = json['create_at'].toString();
@@ -128,22 +110,14 @@ Map<String, dynamic> articleResultDataToJson(ArticleResultData entity) {
 	data['state'] = entity.state;
 	data['public'] = entity.public;
 	data['origin'] = entity.origin;
-	if (entity.tag != null) {
-		data['tag'] =  entity.tag.map((v) => v.toJson()).toList();
-	}
-	if (entity.category != null) {
-		data['category'] =  entity.category.map((v) => v.toJson()).toList();
-	}
+	data['tag'] =  entity.tag?.map((v) => v.toJson())?.toList();
+	data['category'] =  entity.category?.map((v) => v.toJson())?.toList();
 	data['_id'] = entity.sId;
 	data['title'] = entity.title;
 	data['description'] = entity.description;
 	data['thumb'] = entity.thumb;
-	if (entity.xExtends != null) {
-		data['extends'] =  [];
-	}
-	if (entity.meta != null) {
-		data['meta'] = entity.meta.toJson();
-	}
+	data['extends'] = entity.xExtends;
+	data['meta'] = entity.meta?.toJson();
 	data['create_at'] = entity.createAt;
 	data['update_at'] = entity.updateAt;
 	data['id'] = entity.id;
@@ -165,10 +139,7 @@ articleResultDataTagFromJson(ArticleResultDataTag data, Map<String, dynamic> jso
 		data.description = json['description'].toString();
 	}
 	if (json['extends'] != null) {
-		data.xExtends = new List<ArticleResultDataTagExtend>();
-		(json['extends'] as List).forEach((v) {
-			data.xExtends.add(new ArticleResultDataTagExtend().fromJson(v));
-		});
+		data.xExtends = (json['extends'] as List).map((v) => ArticleResultDataTagExtend().fromJson(v)).toList();
 	}
 	if (json['create_at'] != null) {
 		data.createAt = json['create_at'].toString();
@@ -195,9 +166,7 @@ Map<String, dynamic> articleResultDataTagToJson(ArticleResultDataTag entity) {
 	data['name'] = entity.name;
 	data['slug'] = entity.slug;
 	data['description'] = entity.description;
-	if (entity.xExtends != null) {
-		data['extends'] =  entity.xExtends.map((v) => v.toJson()).toList();
-	}
+	data['extends'] =  entity.xExtends?.map((v) => v.toJson())?.toList();
 	data['create_at'] = entity.createAt;
 	data['update_at'] = entity.updateAt;
 	data['id'] = entity.id;
@@ -243,10 +212,7 @@ articleResultDataCategoryFromJson(ArticleResultDataCategory data, Map<String, dy
 		data.description = json['description'].toString();
 	}
 	if (json['extends'] != null) {
-		data.xExtends = new List<ArticleResultDataCategoryExtend>();
-		(json['extends'] as List).forEach((v) {
-			data.xExtends.add(new ArticleResultDataCategoryExtend().fromJson(v));
-		});
+		data.xExtends = (json['extends'] as List).map((v) => ArticleResultDataCategoryExtend().fromJson(v)).toList();
 	}
 	if (json['create_at'] != null) {
 		data.createAt = json['create_at'].toString();
@@ -274,9 +240,7 @@ Map<String, dynamic> articleResultDataCategoryToJson(ArticleResultDataCategory e
 	data['name'] = entity.name;
 	data['slug'] = entity.slug;
 	data['description'] = entity.description;
-	if (entity.xExtends != null) {
-		data['extends'] =  entity.xExtends.map((v) => v.toJson()).toList();
-	}
+	data['extends'] =  entity.xExtends?.map((v) => v.toJson())?.toList();
 	data['create_at'] = entity.createAt;
 	data['update_at'] = entity.updateAt;
 	data['id'] = entity.id;
@@ -338,13 +302,13 @@ Map<String, dynamic> articleResultDataMetaToJson(ArticleResultDataMeta entity) {
 
 articleResultParamsFromJson(ArticleResultParams data, Map<String, dynamic> json) {
 	if (json['querys'] != null) {
-		data.querys = new ArticleResultParamsQuerys().fromJson(json['querys']);
+		data.querys = ArticleResultParamsQuerys().fromJson(json['querys']);
 	}
 	if (json['options'] != null) {
-		data.options = new ArticleResultParamsOptions().fromJson(json['options']);
+		data.options = ArticleResultParamsOptions().fromJson(json['options']);
 	}
 	if (json['params'] != null) {
-		data.params = new ArticleResultParamsParams().fromJson(json['params']);
+		data.params = ArticleResultParamsParams().fromJson(json['params']);
 	}
 	if (json['isAuthenticated'] != null) {
 		data.isAuthenticated = json['isAuthenticated'];
@@ -354,15 +318,9 @@ articleResultParamsFromJson(ArticleResultParams data, Map<String, dynamic> json)
 
 Map<String, dynamic> articleResultParamsToJson(ArticleResultParams entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
-	if (entity.querys != null) {
-		data['querys'] = entity.querys.toJson();
-	}
-	if (entity.options != null) {
-		data['options'] = entity.options.toJson();
-	}
-	if (entity.params != null) {
-		data['params'] = entity.params.toJson();
-	}
+	data['querys'] = entity.querys?.toJson();
+	data['options'] = entity.options?.toJson();
+	data['params'] = entity.params?.toJson();
 	data['isAuthenticated'] = entity.isAuthenticated;
 	return data;
 }
@@ -390,7 +348,7 @@ Map<String, dynamic> articleResultParamsQuerysToJson(ArticleResultParamsQuerys e
 
 articleResultParamsOptionsFromJson(ArticleResultParamsOptions data, Map<String, dynamic> json) {
 	if (json['sort'] != null) {
-		data.sort = new ArticleResultParamsOptionsSort().fromJson(json['sort']);
+		data.sort = ArticleResultParamsOptionsSort().fromJson(json['sort']);
 	}
 	if (json['page'] != null) {
 		data.page = json['page'] is String
@@ -398,7 +356,7 @@ articleResultParamsOptionsFromJson(ArticleResultParamsOptions data, Map<String, 
 				: json['page'].toInt();
 	}
 	if (json['populate'] != null) {
-		data.populate = json['populate']?.map((v) => v.toString())?.toList()?.cast<String>();
+		data.populate = (json['populate'] as List).map((v) => v.toString()).toList().cast<String>();
 	}
 	if (json['select'] != null) {
 		data.select = json['select'].toString();
@@ -408,9 +366,7 @@ articleResultParamsOptionsFromJson(ArticleResultParamsOptions data, Map<String, 
 
 Map<String, dynamic> articleResultParamsOptionsToJson(ArticleResultParamsOptions entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
-	if (entity.sort != null) {
-		data['sort'] = entity.sort.toJson();
-	}
+	data['sort'] = entity.sort?.toJson();
 	data['page'] = entity.page;
 	data['populate'] = entity.populate;
 	data['select'] = entity.select;

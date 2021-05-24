@@ -9,6 +9,8 @@ import 'package:hooyim/api/bean/article_entity.dart';
 import 'package:hooyim/generated/json/article_entity_helper.dart';
 import 'package:hooyim/api/bean/article_detail_entity.dart';
 import 'package:hooyim/generated/json/article_detail_entity_helper.dart';
+import 'package:hooyim/api/bean/user_info_entity.dart';
+import 'package:hooyim/generated/json/user_info_entity_helper.dart';
 
 class JsonConvert<T> {
 	T fromJson(Map<String, dynamic> json) {
@@ -88,7 +90,11 @@ class JsonConvert<T> {
 			case ArticleDetailResultRelated:
 				return articleDetailResultRelatedFromJson(data as ArticleDetailResultRelated, json) as T;
 			case ArticleDetailResultRelatedMeta:
-				return articleDetailResultRelatedMetaFromJson(data as ArticleDetailResultRelatedMeta, json) as T;    }
+				return articleDetailResultRelatedMetaFromJson(data as ArticleDetailResultRelatedMeta, json) as T;
+			case UserInfoEntity:
+				return userInfoEntityFromJson(data as UserInfoEntity, json) as T;
+			case UserInfoResult:
+				return userInfoResultFromJson(data as UserInfoResult, json) as T;    }
     return data as T;
   }
 
@@ -162,6 +168,10 @@ class JsonConvert<T> {
 				return articleDetailResultRelatedToJson(data as ArticleDetailResultRelated);
 			case ArticleDetailResultRelatedMeta:
 				return articleDetailResultRelatedMetaToJson(data as ArticleDetailResultRelatedMeta);
+			case UserInfoEntity:
+				return userInfoEntityToJson(data as UserInfoEntity);
+			case UserInfoResult:
+				return userInfoResultToJson(data as UserInfoResult);
 			}
 			return data as T;
 		}
@@ -236,82 +246,90 @@ class JsonConvert<T> {
 			return ArticleDetailResultRelated().fromJson(json);
 		}	else if(type == (ArticleDetailResultRelatedMeta).toString()){
 			return ArticleDetailResultRelatedMeta().fromJson(json);
+		}	else if(type == (UserInfoEntity).toString()){
+			return UserInfoEntity().fromJson(json);
+		}	else if(type == (UserInfoResult).toString()){
+			return UserInfoResult().fromJson(json);
 		}	
 		return null;
 	}
 
   //list is returned by type
 	static M _getListChildType<M>(List data) {
-		if(List<CommentEntity>() is M){
+		if(<CommentEntity>[] is M){
 			return data.map<CommentEntity>((e) => CommentEntity().fromJson(e)).toList() as M;
-		}	else if(List<CommentResult>() is M){
+		}	else if(<CommentResult>[] is M){
 			return data.map<CommentResult>((e) => CommentResult().fromJson(e)).toList() as M;
-		}	else if(List<CommentResultData>() is M){
+		}	else if(<CommentResultData>[] is M){
 			return data.map<CommentResultData>((e) => CommentResultData().fromJson(e)).toList() as M;
-		}	else if(List<CommentResultDataIpLocation>() is M){
+		}	else if(<CommentResultDataIpLocation>[] is M){
 			return data.map<CommentResultDataIpLocation>((e) => CommentResultDataIpLocation().fromJson(e)).toList() as M;
-		}	else if(List<CommentResultDataAuthor>() is M){
+		}	else if(<CommentResultDataAuthor>[] is M){
 			return data.map<CommentResultDataAuthor>((e) => CommentResultDataAuthor().fromJson(e)).toList() as M;
-		}	else if(List<CommentResultParams>() is M){
+		}	else if(<CommentResultParams>[] is M){
 			return data.map<CommentResultParams>((e) => CommentResultParams().fromJson(e)).toList() as M;
-		}	else if(List<CommentResultParamsQuerys>() is M){
+		}	else if(<CommentResultParamsQuerys>[] is M){
 			return data.map<CommentResultParamsQuerys>((e) => CommentResultParamsQuerys().fromJson(e)).toList() as M;
-		}	else if(List<CommentResultParamsOptions>() is M){
+		}	else if(<CommentResultParamsOptions>[] is M){
 			return data.map<CommentResultParamsOptions>((e) => CommentResultParamsOptions().fromJson(e)).toList() as M;
-		}	else if(List<CommentResultParamsOptionsSort>() is M){
+		}	else if(<CommentResultParamsOptionsSort>[] is M){
 			return data.map<CommentResultParamsOptionsSort>((e) => CommentResultParamsOptionsSort().fromJson(e)).toList() as M;
-		}	else if(List<CommentResultParamsParams>() is M){
+		}	else if(<CommentResultParamsParams>[] is M){
 			return data.map<CommentResultParamsParams>((e) => CommentResultParamsParams().fromJson(e)).toList() as M;
-		}	else if(List<CommentResultPagination>() is M){
+		}	else if(<CommentResultPagination>[] is M){
 			return data.map<CommentResultPagination>((e) => CommentResultPagination().fromJson(e)).toList() as M;
-		}	else if(List<ArticleEntity>() is M){
+		}	else if(<ArticleEntity>[] is M){
 			return data.map<ArticleEntity>((e) => ArticleEntity().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResult>() is M){
+		}	else if(<ArticleResult>[] is M){
 			return data.map<ArticleResult>((e) => ArticleResult().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultData>() is M){
+		}	else if(<ArticleResultData>[] is M){
 			return data.map<ArticleResultData>((e) => ArticleResultData().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultDataTag>() is M){
+		}	else if(<ArticleResultDataTag>[] is M){
 			return data.map<ArticleResultDataTag>((e) => ArticleResultDataTag().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultDataTagExtend>() is M){
+		}	else if(<ArticleResultDataTagExtend>[] is M){
 			return data.map<ArticleResultDataTagExtend>((e) => ArticleResultDataTagExtend().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultDataCategory>() is M){
+		}	else if(<ArticleResultDataCategory>[] is M){
 			return data.map<ArticleResultDataCategory>((e) => ArticleResultDataCategory().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultDataCategoryExtend>() is M){
+		}	else if(<ArticleResultDataCategoryExtend>[] is M){
 			return data.map<ArticleResultDataCategoryExtend>((e) => ArticleResultDataCategoryExtend().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultDataMeta>() is M){
+		}	else if(<ArticleResultDataMeta>[] is M){
 			return data.map<ArticleResultDataMeta>((e) => ArticleResultDataMeta().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultParams>() is M){
+		}	else if(<ArticleResultParams>[] is M){
 			return data.map<ArticleResultParams>((e) => ArticleResultParams().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultParamsQuerys>() is M){
+		}	else if(<ArticleResultParamsQuerys>[] is M){
 			return data.map<ArticleResultParamsQuerys>((e) => ArticleResultParamsQuerys().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultParamsOptions>() is M){
+		}	else if(<ArticleResultParamsOptions>[] is M){
 			return data.map<ArticleResultParamsOptions>((e) => ArticleResultParamsOptions().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultParamsOptionsSort>() is M){
+		}	else if(<ArticleResultParamsOptionsSort>[] is M){
 			return data.map<ArticleResultParamsOptionsSort>((e) => ArticleResultParamsOptionsSort().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultParamsParams>() is M){
+		}	else if(<ArticleResultParamsParams>[] is M){
 			return data.map<ArticleResultParamsParams>((e) => ArticleResultParamsParams().fromJson(e)).toList() as M;
-		}	else if(List<ArticleResultPagination>() is M){
+		}	else if(<ArticleResultPagination>[] is M){
 			return data.map<ArticleResultPagination>((e) => ArticleResultPagination().fromJson(e)).toList() as M;
-		}	else if(List<ArticleDetailEntity>() is M){
+		}	else if(<ArticleDetailEntity>[] is M){
 			return data.map<ArticleDetailEntity>((e) => ArticleDetailEntity().fromJson(e)).toList() as M;
-		}	else if(List<ArticleDetailResult>() is M){
+		}	else if(<ArticleDetailResult>[] is M){
 			return data.map<ArticleDetailResult>((e) => ArticleDetailResult().fromJson(e)).toList() as M;
-		}	else if(List<ArticleDetailResultTag>() is M){
+		}	else if(<ArticleDetailResultTag>[] is M){
 			return data.map<ArticleDetailResultTag>((e) => ArticleDetailResultTag().fromJson(e)).toList() as M;
-		}	else if(List<ArticleDetailResultTagExtend>() is M){
+		}	else if(<ArticleDetailResultTagExtend>[] is M){
 			return data.map<ArticleDetailResultTagExtend>((e) => ArticleDetailResultTagExtend().fromJson(e)).toList() as M;
-		}	else if(List<ArticleDetailResultCategory>() is M){
+		}	else if(<ArticleDetailResultCategory>[] is M){
 			return data.map<ArticleDetailResultCategory>((e) => ArticleDetailResultCategory().fromJson(e)).toList() as M;
-		}	else if(List<ArticleDetailResultCategoryExtend>() is M){
+		}	else if(<ArticleDetailResultCategoryExtend>[] is M){
 			return data.map<ArticleDetailResultCategoryExtend>((e) => ArticleDetailResultCategoryExtend().fromJson(e)).toList() as M;
-		}	else if(List<ArticleDetailResultMeta>() is M){
+		}	else if(<ArticleDetailResultMeta>[] is M){
 			return data.map<ArticleDetailResultMeta>((e) => ArticleDetailResultMeta().fromJson(e)).toList() as M;
-		}	else if(List<ArticleDetailResultRelated>() is M){
+		}	else if(<ArticleDetailResultRelated>[] is M){
 			return data.map<ArticleDetailResultRelated>((e) => ArticleDetailResultRelated().fromJson(e)).toList() as M;
-		}	else if(List<ArticleDetailResultRelatedMeta>() is M){
+		}	else if(<ArticleDetailResultRelatedMeta>[] is M){
 			return data.map<ArticleDetailResultRelatedMeta>((e) => ArticleDetailResultRelatedMeta().fromJson(e)).toList() as M;
+		}	else if(<UserInfoEntity>[] is M){
+			return data.map<UserInfoEntity>((e) => UserInfoEntity().fromJson(e)).toList() as M;
+		}	else if(<UserInfoResult>[] is M){
+			return data.map<UserInfoResult>((e) => UserInfoResult().fromJson(e)).toList() as M;
 		}
-		return null;
+		throw Exception("not fond");
 	}
 
   static M fromJsonAsT<M>(json) {

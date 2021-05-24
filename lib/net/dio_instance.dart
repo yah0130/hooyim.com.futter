@@ -7,7 +7,6 @@ class DioInstance {
     if (_instance == null) {
       BaseOptions options = BaseOptions(
           // 15s 超时时间
-          baseUrl: 'https://api.hooyim.com',
           connectTimeout: 15000,
           receiveTimeout: 15000);
       _instance = new Dio(options);

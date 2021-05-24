@@ -11,14 +11,14 @@ import 'package:skeleton_text/skeleton_text.dart';
 
 import 'state.dart';
 
-Widget buildView(ArticleState state, Dispatch dispatch,
-    ViewService viewService) {
+Widget buildView(
+    ArticleState state, Dispatch dispatch, ViewService viewService) {
   int id = state.id;
   int likes = state.meta.likes;
   int views = state.meta.views;
   int comments = state.meta.comments;
   String updateAt =
-  DateFormat("yyyy/MM/dd").format(DateTime.parse(state.updateAt));
+      DateFormat("yyyy/MM/dd").format(DateTime.parse(state.updateAt));
   return Scaffold(
       appBar: BaseViewBar(
           childView: BaseTitleBar(
@@ -65,77 +65,76 @@ Widget buildView(ArticleState state, Dispatch dispatch,
                         ),
                         state.loading
                             ? Container(
-                          height: ScreenUtil().setHeight(700),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, bottom: 10.0),
-                                child: SkeletonAnimation(
-                                  child: Container(
-                                    height: 10,
-                                    width:
-                                    MediaQuery
-                                        .of(viewService.context)
-                                        .size
-                                        .width *
-                                        0.8,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(10.0),
-                                        color: Colors.grey[300]),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, bottom: 10.0),
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.only(right: 5.0),
-                                  child: SkeletonAnimation(
-                                    child: Container(
-                                      width: 160,
-                                      height: 10,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.circular(10.0),
-                                          color: Colors.grey[300]),
+                                height: ScreenUtil().setHeight(700),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 15.0, bottom: 10.0),
+                                      child: SkeletonAnimation(
+                                        child: Container(
+                                          height: 10,
+                                          width:
+                                              MediaQuery.of(viewService.context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              color: Colors.grey[300]),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, bottom: 5.0),
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.only(right: 5.0),
-                                  child: SkeletonAnimation(
-                                    child: Container(
-                                      width: 80,
-                                      height: 10,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.circular(10.0),
-                                          color: Colors.grey[300]),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 15.0, bottom: 10.0),
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 5.0),
+                                        child: SkeletonAnimation(
+                                          child: Container(
+                                            width: 160,
+                                            height: 10,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                color: Colors.grey[300]),
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 15.0, bottom: 5.0),
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 5.0),
+                                        child: SkeletonAnimation(
+                                          child: Container(
+                                            width: 80,
+                                            height: 10,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                color: Colors.grey[300]),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                        )
+                              )
                             : Container(
-                          child: Markdown(
-                            controller: state.controller,
-                            shrinkWrap: true,
-                            data: state.detail.result.content,
-                          ),
-                        )
+                                child: Markdown(
+                                  controller: state.controller,
+                                  shrinkWrap: true,
+                                  data: state.detail.result.content,
+                                ),
+                              )
                       ],
                     ),
                   ),
@@ -185,7 +184,10 @@ Widget buildView(ArticleState state, Dispatch dispatch,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Icon(
-                                  IconData(0xe609, fontFamily: 'iconfont'),
+                                  state.isLiked
+                                      ? IconData(0xe65b, fontFamily: 'iconfont')
+                                      : IconData(0xe607,
+                                          fontFamily: 'iconfont'),
                                   color: state.isLiked
                                       ? Colors.redAccent
                                       : Colors.grey,
@@ -208,7 +210,7 @@ Widget buildView(ArticleState state, Dispatch dispatch,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Icon(
-                                Icons.share,
+                                IconData(0xe600, fontFamily: 'iconfont'),
                                 color: Colors.grey,
                                 size: 20,
                               ),

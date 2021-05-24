@@ -7,7 +7,8 @@ enum HomeAction {
   refresh,
   updateArticleEntity,
   loadMore,
-  appendArticle
+  appendArticle,
+  updateArticleLike
 }
 
 class HomeActionCreator {
@@ -29,5 +30,9 @@ class HomeActionCreator {
 
   static Action onUpdateArticleEntity(ArticleEntity bean) {
     return Action(HomeAction.updateArticleEntity, payload: bean);
+  }
+
+  static Action onUpdateArticleLike(int id) {
+    return Action(HomeAction.updateArticleLike, payload: id);
   }
 }

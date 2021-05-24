@@ -31,19 +31,21 @@ void _init(Action action, Context<ArticleState> ctx) {
 }
 
 void _onLikePage(Action action, Context<ArticleState> ctx) {
-  _getIsLiked(action.payload).then((result){
-    if(!result){
+  _getIsLiked(action.payload).then((result) {
+    if (!result) {
       _likePage(action.payload).then((res) {
-        ctx.dispatch(ArticleActionCreator.onUpdateLike(action.payload));
+        if (res) {
+          ctx.dispatch(ArticleActionCreator.onUpdateLike(action.payload));
+          ctx.broadcast(ArticleActionCreator.onUpdateHomeLike(action.payload));
+        }
       });
     }
   });
 }
 
-Future<ResultData> _likePage(id) async {
+Future<bool> _likePage(id) async {
   ResultData resultData = await AppApi.getInstance().likePage(id, false);
-  resultData.isSuccess();
-  return resultData;
+  return resultData.isSuccess();
 }
 
 Future<ArticleDetailEntity> _getArticle(id) async {
@@ -70,7 +72,7 @@ Future<bool> _getIsLiked(int id) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   likedList = prefs.getStringList('likedList');
   if (likedList == null) {
-    likedList = List<String>();
+    likedList = [];
   }
   return likedList.contains(id.toString());
 }

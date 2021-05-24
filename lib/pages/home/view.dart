@@ -3,6 +3,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooyim/api/bean/article_entity.dart';
 import 'package:hooyim/pages/home/action.dart';
 import 'package:intl/intl.dart';
@@ -11,8 +12,37 @@ import 'state.dart';
 
 Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
   return Container(
-      color: Colors.grey[100],
+      color: Colors.grey[200],
       child: EasyRefresh.custom(
+        firstRefresh: true,
+        firstRefreshWidget: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: Center(
+              child: SizedBox(
+                height: 200.0,
+                width: 300.0,
+                child: Card(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        width: 50.0,
+                        height: 50.0,
+                        child: SpinKitFadingCube(
+                          color: Theme.of(viewService.context).primaryColor,
+                          size: 25.0,
+                        ),
+                      ),
+                      Container(
+                        child: Text('正在加载...'),
+                      )
+                    ],
+                  ),
+                ),
+              )),
+        ),
         controller: state.controller,
         enableControlFinishLoad: true,
         header: BallPulseHeader(color: Color.fromRGBO(54, 209, 193, 1)),
@@ -125,7 +155,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                                             MainAxisAlignment.start,
                                         children: [
                                           Icon(
-                                            IconData(0xe608,
+                                            IconData(0xe6e4,
                                                 fontFamily: 'iconfont'),
                                             color: Colors.grey,
                                             size: 20,
@@ -167,7 +197,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                                             MainAxisAlignment.start,
                                         children: [
                                           Icon(
-                                            IconData(0xe609,
+                                            IconData(0xe607,
                                                 fontFamily: 'iconfont'),
                                             color: Colors.grey,
                                             size: 20,

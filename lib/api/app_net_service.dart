@@ -27,7 +27,8 @@ class AppNetService extends NetService {
 
   @override
   getBasicUrl() {
-    return "https://api.hooyim.com";
+    const bool inProduction = const bool.fromEnvironment("dart.vm.product");
+    return inProduction ? 'https://api.hooyim.com' : 'http://localhost:8050';
   }
 
   @override

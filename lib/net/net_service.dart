@@ -15,6 +15,7 @@ export 'result_data.dart';
 enum Method {
   GET,
   POST,
+  PATCH,
   UPLOAD,
   DOWNLOAD,
 }
@@ -38,6 +39,16 @@ class NetService {
       bool showLoad}) async {
     return await request(url,
         method: Method.POST,
+        params: params,
+        showLoad: showLoad);
+  }
+
+  /// post请求
+  patch(String url,
+      {Map<String, dynamic> params,
+        bool showLoad}) async {
+    return await request(url,
+        method: Method.PATCH,
         params: params,
         showLoad: showLoad);
   }
@@ -98,6 +109,12 @@ class NetService {
               data: params,
               options:
                   Options(contentType: "application/x-www-form-urlencoded"));
+          break;
+        case Method.PATCH:
+          response = await dioInstance.patch(url,
+              data: params,
+              options:
+              Options(contentType: "application/json"));
           break;
         case Method.UPLOAD:
           {

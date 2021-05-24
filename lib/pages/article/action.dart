@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 
 //TODO replace with your own action
-enum ArticleAction { setDetailData, likePage, updateLike }
+enum ArticleAction { setDetailData, likePage, updateLike, updateHomeLike }
 
 class ArticleActionCreator {
   static Action onSetDetailData(Map<String, dynamic> data) {
@@ -10,6 +10,10 @@ class ArticleActionCreator {
 
   static Action onUpdateLike(int id) {
     return Action(ArticleAction.updateLike, payload: id);
+  }
+
+  static Action onUpdateHomeLike(int id) {
+    return Action(ArticleAction.updateHomeLike, payload: id);
   }
 
   static Action onLikePage(int id) {

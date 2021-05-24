@@ -29,9 +29,9 @@ ArticleState _onSetDetailData(ArticleState state, Action action) {
 
 ArticleState _onUpdateLike(ArticleState state, Action action) {
   final ArticleState newState = state.clone()
-    ..meta.likes += 1
+    ..meta.likes = action.payload['likes']
     ..isLiked = true;
-  _setLiked(action.payload);
+  _setLiked(action.payload['id']);
   return newState;
 }
 
@@ -41,7 +41,7 @@ void _setLiked(int id) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   likedList = prefs.getStringList('likedList');
   if (likedList == null) {
-    likedList = List<String>();
+    likedList = [];
   }
   likedList.add(id.toString());
   prefs.setStringList('likedList', likedList);

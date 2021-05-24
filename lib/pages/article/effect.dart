@@ -27,6 +27,7 @@ void _init(Action action, Context<ArticleState> ctx) {
       'comments': (values[1] as CommentEntity),
       'isLiked': values[2]
     }));
+    ctx.broadcast(ArticleActionCreator.onUpdateHomeBrowser(ctx.state.id));
   });
 }
 
@@ -35,8 +36,11 @@ void _onLikePage(Action action, Context<ArticleState> ctx) {
     if (!result) {
       _likePage(action.payload).then((res) {
         if (res) {
-          ctx.dispatch(ArticleActionCreator.onUpdateLike(action.payload));
-          ctx.broadcast(ArticleActionCreator.onUpdateHomeLike(action.payload));
+          int likes = ctx.state.meta.likes + 1;
+          ctx.broadcast(ArticleActionCreator.onUpdateHomeLike(
+              {'id': action.payload, 'likes': likes}));
+          ctx.dispatch(ArticleActionCreator.onUpdateLike(
+              {'id': action.payload, 'likes': likes}));
         }
       });
     }

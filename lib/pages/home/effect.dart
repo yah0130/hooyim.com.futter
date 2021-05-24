@@ -12,7 +12,8 @@ Effect<HomeState> buildEffect() {
     HomeAction.refresh: _onArticleRefresh,
     HomeAction.getArticles: _onGetArticle,
     HomeAction.loadMore: _onLoadMore,
-    ArticleAction.updateHomeLike: _onUpdateArticleLike
+    ArticleAction.updateHomeLike: _onUpdateArticleLike,
+    ArticleAction.updateHomeBrowser: _onUpdateArticleBrowser
   });
 }
 
@@ -22,6 +23,10 @@ void _onArticleRefresh(Action action, Context<HomeState> ctx) {
 
 void _onUpdateArticleLike(Action action, Context<HomeState> ctx) {
   ctx.dispatch(HomeActionCreator.onUpdateArticleLike(action.payload));
+}
+
+void _onUpdateArticleBrowser(Action action, Context<HomeState> ctx) {
+  ctx.dispatch(HomeActionCreator.onUpdateArticleBrowser(action.payload));
 }
 
 void _onLoadMore(Action action, Context<HomeState> ctx) {

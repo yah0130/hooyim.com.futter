@@ -20,28 +20,28 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
           height: double.infinity,
           child: Center(
               child: SizedBox(
-                height: 200.0,
-                width: 300.0,
-                child: Card(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        width: 50.0,
-                        height: 50.0,
-                        child: SpinKitFadingCube(
-                          color: Theme.of(viewService.context).primaryColor,
-                          size: 25.0,
-                        ),
-                      ),
-                      Container(
-                        child: Text('正在加载...'),
-                      )
-                    ],
+            height: 200.0,
+            width: 300.0,
+            child: Card(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: 50.0,
+                    height: 50.0,
+                    child: SpinKitFadingCube(
+                      color: Theme.of(viewService.context).primaryColor,
+                      size: 25.0,
+                    ),
                   ),
-                ),
-              )),
+                  Container(
+                    child: Text('正在加载...'),
+                  )
+                ],
+              ),
+            ),
+          )),
         ),
         controller: state.controller,
         enableControlFinishLoad: true,
@@ -57,6 +57,14 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                 : 1
           }));
         },
+        emptyWidget: state.articleEntity.result != null &&
+                state.articleEntity.result.data.length > 0
+            ? null
+            : Container(
+                child: Center(
+                  child: Text('暂无数据'),
+                ),
+              ),
         slivers: <Widget>[
           SliverList(
             delegate: SliverChildBuilderDelegate(

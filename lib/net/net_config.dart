@@ -1,3 +1,3 @@
 class NetConfig {
-  static const DEBUG = true;
+  static const DEBUG = bool.fromEnvironment("dart.vm.product");
 }

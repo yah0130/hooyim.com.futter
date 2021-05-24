@@ -14,7 +14,7 @@ packages:
       name: async
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -163,13 +163,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "7.1.6"
-  fluwx_no_pay:
-    dependency: "direct main"
-    description:
-      name: fluwx_no_pay
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.4.0+1"
   http:
     dependency: transitive
     description:
@@ -370,7 +363,7 @@ packages:
       name: source_span
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   stack_trace:
     dependency: transitive
     description:
@@ -412,7 +405,7 @@ packages:
       name: test_api
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:

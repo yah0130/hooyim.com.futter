@@ -7,7 +7,6 @@ import 'state.dart';
 
 Widget buildView(MineState state, Dispatch dispatch, ViewService viewService) {
   UserInfoResult data = state.userInfoEntity.result;
-  print(data);
   return Container(
       color: Colors.grey[200],
       child: Column(

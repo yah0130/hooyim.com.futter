@@ -33,6 +33,7 @@ Widget buildView(
           SingleChildScrollView(
             child: Container(
               color: Colors.grey[300],
+              height: double.maxFinite,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -143,7 +144,7 @@ Widget buildView(
             ),
           ),
           Positioned(
-            bottom: 0,
+            bottom: -10,
             left: 0,
             right: 0,
             child: SizedBox(
@@ -151,79 +152,81 @@ Widget buildView(
                 height: ScreenUtil().setWidth(100),
                 child: Opacity(
                   opacity: 0.85,
-                  child: Container(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(
-                                IconData(0xe660, fontFamily: 'iconfont'),
-                                color: Colors.grey,
-                                size: 20,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                child: Text(
-                                  '评论($comments)',
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                              )
-                            ],
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              dispatch(
-                                  ArticleActionCreator.onLikePage(state.id));
-                            },
-                            child: Row(
+                  child: Center(
+                    child: Container(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Icon(
-                                  state.isLiked
-                                      ? IconData(0xe65b, fontFamily: 'iconfont')
-                                      : IconData(0xe607,
-                                          fontFamily: 'iconfont'),
-                                  color: state.isLiked
-                                      ? Colors.redAccent
-                                      : Colors.grey,
+                                  IconData(0xe660, fontFamily: 'iconfont'),
+                                  color: Colors.grey,
                                   size: 20,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                                   child: Text(
-                                    '喜欢($likes)',
-                                    style: TextStyle(
-                                        color: state.isLiked
-                                            ? Colors.redAccent
-                                            : Colors.black54),
+                                    '评论($comments)',
+                                    style: TextStyle(color: Colors.black54),
                                   ),
                                 )
                               ],
                             ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(
-                                IconData(0xe600, fontFamily: 'iconfont'),
-                                color: Colors.grey,
-                                size: 20,
+                            GestureDetector(
+                              onTap: () {
+                                dispatch(
+                                    ArticleActionCreator.onLikePage(state.id));
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    state.isLiked
+                                        ? IconData(0xe65b, fontFamily: 'iconfont')
+                                        : IconData(0xe607,
+                                            fontFamily: 'iconfont'),
+                                    color: state.isLiked
+                                        ? Colors.redAccent
+                                        : Colors.grey,
+                                    size: 20,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                    child: Text(
+                                      '喜欢($likes)',
+                                      style: TextStyle(
+                                          color: state.isLiked
+                                              ? Colors.redAccent
+                                              : Colors.black54),
+                                    ),
+                                  )
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                child: Text(
-                                  '分享',
-                                  style: TextStyle(color: Colors.black54),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  IconData(0xe600, fontFamily: 'iconfont'),
+                                  color: Colors.grey,
+                                  size: 20,
                                 ),
-                              )
-                            ],
-                          ),
-                        ],
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                  child: Text(
+                                    '分享',
+                                    style: TextStyle(color: Colors.black54),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

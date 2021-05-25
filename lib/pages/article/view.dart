@@ -33,7 +33,6 @@ Widget buildView(
           SingleChildScrollView(
             child: Container(
               color: Colors.grey[300],
-              height: double.maxFinite,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -144,7 +143,7 @@ Widget buildView(
             ),
           ),
           Positioned(
-            bottom: -10,
+            bottom: 0,
             left: 0,
             right: 0,
             child: SizedBox(

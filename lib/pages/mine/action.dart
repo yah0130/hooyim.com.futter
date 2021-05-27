@@ -1,11 +1,10 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:hooyim/api/bean/user_info_entity.dart';
 
 //TODO replace with your own action
-enum MineAction { setUserInfo }
+enum MineAction { setBaseInfo }
 
 class MineActionCreator {
-  static Action onSetUserInfoAction(UserInfoEntity bean) {
-    return Action(MineAction.setUserInfo, payload: bean);
+  static Action onSetBaseInfoAction(List<Object> beans) {
+    return Action(MineAction.setBaseInfo, payload: beans);
   }
 }

@@ -21,7 +21,9 @@ MainState initState(Map<String, dynamic> args) {
   return MainState()
     ..title = '明殿'
     ..leading = IconButton(
-        icon: Icon(Icons.filter_alt), color: Colors.white, onPressed: () {})
+        icon: Icon(const IconData(0xe928, fontFamily: 'iconfont')),
+        color: Colors.white,
+        onPressed: () {})
     ..rightWidget = IconButton(icon: Icon(Icons.search), onPressed: () {})
     ..index = 0;
 }

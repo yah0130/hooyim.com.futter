@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5478601",
+      "name": "filter",
+      "font_class": "filter",
+      "unicode": "e928",
+      "unicode_decimal": 59688
+    },
+    {
+      "icon_id": "562625",
+      "name": "email",
+      "font_class": "email",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "1899068",
+      "name": "telegram",
+      "font_class": "telegram",
+      "unicode": "e731",
+      "unicode_decimal": 59185
+    },
+    {
+      "icon_id": "5072087",
+      "name": "movie",
+      "font_class": "movie",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "5260069",
+      "name": "twitter",
+      "font_class": "twitter",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "5634723",
+      "name": "instagram",
+      "font_class": "instagram",
+      "unicode": "f1d3",
+      "unicode_decimal": 61907
+    },
+    {
+      "icon_id": "8952935",
+      "name": "linkedin",
+      "font_class": "linkedin",
+      "unicode": "e812",
+      "unicode_decimal": 59410
+    },
+    {
+      "icon_id": "20278967",
+      "name": "GitHub",
+      "font_class": "GitHub",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
       "icon_id": "18057272",
       "name": "Like",
       "font_class": "Like",

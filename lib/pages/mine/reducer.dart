@@ -6,12 +6,14 @@ import 'state.dart';
 Reducer<MineState> buildReducer() {
   return asReducer(
     <Object, Reducer<MineState>>{
-      MineAction.setUserInfo: _onSetUserInfoAction,
+      MineAction.setBaseInfo: _onSetBaseInfoAction,
     },
   );
 }
 
-MineState _onSetUserInfoAction(MineState state, Action action) {
-  final MineState newState = state.clone()..userInfoEntity = action.payload;
+MineState _onSetBaseInfoAction(MineState state, Action action) {
+  final MineState newState = state.clone()
+    ..userInfoEntity = action.payload[0]
+    ..statisticEntity = action.payload[1];
   return newState;
 }

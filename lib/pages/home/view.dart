@@ -163,7 +163,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                                             MainAxisAlignment.start,
                                         children: [
                                           Icon(
-                                            IconData(0xe6e4,
+                                            const IconData(0xe6e4,
                                                 fontFamily: 'iconfont'),
                                             color: Colors.grey,
                                             size: 20,
@@ -184,7 +184,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                                             MainAxisAlignment.start,
                                         children: [
                                           Icon(
-                                            IconData(0xe660,
+                                            const IconData(0xe660,
                                                 fontFamily: 'iconfont'),
                                             color: Colors.grey,
                                             size: 20,
@@ -205,7 +205,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                                             MainAxisAlignment.start,
                                         children: [
                                           Icon(
-                                            IconData(0xe607,
+                                            const IconData(0xe607,
                                                 fontFamily: 'iconfont'),
                                             color: Colors.grey,
                                             size: 20,

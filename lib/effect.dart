@@ -15,7 +15,7 @@ void _onSwitchClick(Action action, Context<MainState> ctx) {
   switch (index) {
     case 0:
       ctx.dispatch(MainActionCreator.onSetLeading(IconButton(
-          icon: Icon(Icons.filter_alt),
+          icon: Icon(const IconData(0xe928, fontFamily: 'iconfont')),
           color: Colors.white,
           onPressed: () {})));
       ctx.dispatch(MainActionCreator.onSetRightWidget(

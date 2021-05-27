@@ -159,22 +159,32 @@ Widget buildView(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(
-                                  IconData(0xe660, fontFamily: 'iconfont'),
-                                  color: Colors.grey,
-                                  size: 20,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                  child: Text(
-                                    '评论($comments)',
-                                    style: TextStyle(color: Colors.black54),
+                            GestureDetector(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    const IconData(0xe660,
+                                        fontFamily: 'iconfont'),
+                                    color: Colors.grey,
+                                    size: 20,
                                   ),
-                                )
-                              ],
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                    child: Text(
+                                      '评论($comments)',
+                                      style: TextStyle(color: Colors.black54),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              onTap: () {
+                                showBottomSheet(
+                                    context: viewService.context,
+                                    builder: (BuildContext context) {
+                                      return Container();
+                                    });
+                              },
                             ),
                             GestureDetector(
                               onTap: () {
@@ -186,8 +196,9 @@ Widget buildView(
                                 children: [
                                   Icon(
                                     state.isLiked
-                                        ? IconData(0xe65b, fontFamily: 'iconfont')
-                                        : IconData(0xe607,
+                                        ? const IconData(0xe65b,
+                                            fontFamily: 'iconfont')
+                                        : const IconData(0xe607,
                                             fontFamily: 'iconfont'),
                                     color: state.isLiked
                                         ? Colors.redAccent
@@ -211,7 +222,8 @@ Widget buildView(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Icon(
-                                  IconData(0xe600, fontFamily: 'iconfont'),
+                                  const IconData(0xe600,
+                                      fontFamily: 'iconfont'),
                                   color: Colors.grey,
                                   size: 20,
                                 ),

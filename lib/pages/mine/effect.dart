@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:hooyim/api/app_api.dart';
+import 'package:hooyim/api/bean/statistic_entity.dart';
 import 'package:hooyim/api/bean/user_info_entity.dart';
 import 'package:hooyim/net/result_data.dart';
 import 'package:hooyim/pages/mine/action.dart';
@@ -13,9 +14,10 @@ Effect<MineState> buildEffect() {
 }
 
 void _init(Action action, Context<MineState> ctx) {
-  _getUserInfo().then((bean) {
-    ctx.dispatch(MineActionCreator.onSetUserInfoAction(bean));
+  Future.wait([_getUserInfo(), _fetchStatistic()]).then((beans) {
+    ctx.dispatch(MineActionCreator.onSetBaseInfoAction(beans));
   });
+  _getUserInfo().then((bean) {});
 }
 
 Future<UserInfoEntity> _getUserInfo() async {
@@ -25,4 +27,13 @@ Future<UserInfoEntity> _getUserInfo() async {
     userInfoEntity.fromJson(resultData.response);
   }
   return userInfoEntity;
+}
+
+Future<StatisticEntity> _fetchStatistic() async {
+  ResultData resultData = await AppApi.getInstance().fetchStatistic({}, false);
+  StatisticEntity statisticEntity = StatisticEntity();
+  if (resultData.isSuccess()) {
+    statisticEntity.fromJson(resultData.response);
+  }
+  return statisticEntity;
 }

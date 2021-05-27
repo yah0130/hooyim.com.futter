@@ -16,6 +16,9 @@ class AppApi extends AppNetService {
   /// 喜欢
   static const String _LIKE = "/like/article";
 
+  /// 统计
+  static const String _STATISTIC = "/expansion/statistic";
+
   AppApi._();
 
   static AppApi _instance;
@@ -56,6 +59,13 @@ class AppApi extends AppNetService {
       Map<String, dynamic> param, bool showProgress) async {
     ResultData resultData =
     await get(_ADMIN, params: param, showLoad: showProgress);
+    return resultData;
+  }
+
+  Future<ResultData> fetchStatistic(
+      Map<String, dynamic> param, bool showProgress) async {
+    ResultData resultData =
+    await get(_STATISTIC, params: param, showLoad: showProgress);
     return resultData;
   }
 }
